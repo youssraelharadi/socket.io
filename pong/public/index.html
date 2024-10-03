@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        window.onload = () => {
+            const socket = io('http://localhost:3000'); 
+
+            socket.on('pongNotification', (notification) => {
+                console.log('Notification reçue:', notification);
+                alert(notification); 
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>Pong Page</h1>
+    <p>Attendre un message de Ping...</p>
+</body>
+</html>

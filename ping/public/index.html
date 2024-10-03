@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        window.onload = () => {
+            const socket = io('http://localhost:3000'); 
+
+            
+            document.getElementById('sendPing').addEventListener('click', () => {
+                const message = document.getElementById('messageInput').value; 
+                socket.emit('pingMessage', message); 
+                console.log('Message envoyé:', message);
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>Ping Page</h1>
+    <input type="text" id="messageInput" placeholder="Tapez un message à envoyer à Pong" />
+    <button id="sendPing">Envoyer</button>
+</body>
+</html>

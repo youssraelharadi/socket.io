@@ -3,21 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pong</title>
+    <title>Ping</title>
+    <link rel="stylesheet" href="styles/style.css"> <!-- Lien vers style.css -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
         window.onload = () => {
             const socket = io('http://localhost:3000'); 
-
-            socket.on('pongNotification', (notification) => {
-                console.log('Notification reçue:', notification);
-                alert(notification); 
+            
+            document.getElementById('sendPing').addEventListener('click', () => {
+                const message = document.getElementById('messageInput').value; 
+                socket.emit('pingMessage', message); 
+                console.log('Message envoyé:', message);
             });
         };
     </script>
 </head>
-<body>
-    <h1>Pong Page</h1>
-    <p>Attendre un message de Ping...</p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="ping-container">
+        <h1 class="ping-title">Ping Page</h1>
+
+        <div class="input-container">
+            <input 
+                type="text" 
+                id="messageInput" 
+                placeholder="Tapez un message à envoyer à Pong"
+                class="ping-input"
+            />
+        </div>
+        
+        <div class="button-container">
+            <button 
+                id="sendPing" 
+                class="ping-button"
+            >
+                Envoyer
+            </button>
+        </div>
+    </div>
+
 </body>
 </html>
